@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Job Runner UI</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Job Runner</h1>
+
+    <form id="jobForm" class="form">
+      <input type="text" id="commandInput" placeholder="Enter shell command..." required />
+      <button type="submit">Submit Job</button>
+    </form>
+
+    <div class="job-list">
+      <h2>All Jobs</h2>
+      <ul id="jobsList"></ul>
+    </div>
+  </div>
+
+  <!-- ✅ JS should be loaded after DOM elements -->
+  <script src="app.js"></script>
+</body>
+</html>

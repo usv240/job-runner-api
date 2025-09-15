@@ -2,7 +2,7 @@ from fastapi import APIRouter
 from app.models import JobRequest, JobStatus
 from app.tasks import run_job
 from app.utils import generate_job_id
-from app.store import jobs
+from app.store import jobs, processes  # ✅ Import here
 import uuid
 import threading
 
@@ -25,3 +25,12 @@ def get_job(job_id: str):
 @router.get("/jobs")
 def list_jobs():
     return [{"job_id": jid, "status": data["status"]} for jid, data in jobs.items()]
+
+@router.post("/jobs/{job_id}/cancel")
+def cancel_job(job_id: str):
+    process = processes.get(job_id)
+    if process and process.poll() is None:
+        process.terminate()
+        jobs[job_id]["status"] = "cancelled"
+        return {"message": f"Job {job_id} cancelled"}
+    return {"message": f"Job {job_id} not running or already finished"}

@@ -33,3 +33,19 @@ async def test_get_job_status():
         data = response.json()
         assert data["job_id"] == job_id
         assert data["status"] in ["queued", "running", "completed", "failed", "not_found"]
+
+import asyncio
+
+@pytest.mark.asyncio
+async def test_cancel_job():
+    async with AsyncClient(app=app, base_url="http://test") as ac:
+        post_response = await ac.post("/jobs", json={"command": "ping localhost -n 10"})
+        job_id = post_response.json()["job_id"]
+
+        # 🔁 Give the job some time to start
+        await asyncio.sleep(1)
+
+        cancel_response = await ac.post(f"/jobs/{job_id}/cancel")
+        assert cancel_response.status_code == 200
+        assert "cancelled" in cancel_response.json()["message"]
+
