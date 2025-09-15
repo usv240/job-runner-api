@@ -1,4 +1,4 @@
-#  Job Runner API (FastAPI + Async + Tests)
+# Job Runner API (FastAPI + Async + Tests)
 
 This is a simple but powerful API for running shell commands as background jobs using FastAPI. It was built to understand how background processing works with async code, and how to structure a backend project with proper routing, task handling, and tests.
 
@@ -70,7 +70,7 @@ Visit the docs:
 
 ```
 job-runner-api/
-│
+|
 ├── app/
 │   ├── main.py          # App entry point
 │   ├── routes.py        # All endpoints (GET, POST)
@@ -78,10 +78,15 @@ job-runner-api/
 │   ├── models.py        # Pydantic models
 │   ├── store.py         # In-memory job store
 │   └── utils.py         # Utility functions
-│
+|
 ├── tests/
 │   └── test_jobs.py     # Test cases using HTTPX + pytest
-│
+|
+├── frontend/            # Simple HTML/JS UI (optional)
+│   ├── index.html
+│   ├── app.js
+│   └── styles.css
+|
 ├── README.md
 └── requirements.txt
 ```
@@ -148,3 +153,44 @@ Built with ❤️ for learning FastAPI async jobs, testing, and backend architec
 Feel free to fork and improve!
 
 ---
+
+##  Optional: Simple Web UI (Frontend)
+
+This project also comes with a basic UI built using plain HTML, CSS, and JavaScript to help visualize the job system in action.
+
+### Folder structure:
+
+```
+frontend/
+├── index.html     # Main UI page
+├── styles.css     # Basic styling for the form and job list
+└── app.js         # Logic to talk to FastAPI backend
+```
+
+### How to run it:
+
+Make sure your backend is running on `http://localhost:8000`, then:
+
+```bash
+cd frontend
+python -m http.server 8080
+```
+
+Visit it in your browser:
+ [http://localhost:8080](http://localhost:8080)
+
+---
+
+### UI Features:
+
+* Submit shell commands via input field
+* View job list with status (`running`, `completed`, etc.)
+* Auto-refresh job list every 5 seconds
+* Cancel running jobs with a button
+* Output display for completed jobs
+* Color-coded status display (green = success, red = failed, etc.)
+
+---
+
+This UI is intentionally kept simple. It's ideal for beginners who want to learn how frontend talks to backend via APIs.
+You can later rebuild this in React/Vue or add Tailwind/Boo
