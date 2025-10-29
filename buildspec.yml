@@ -1,0 +1,18 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo "Installing Python and dependencies..."
+      - choco install python -y
+      - pip install --upgrade pip
+      - pip install -r requirements.txt
+
+  build:
+    commands:
+      - echo "Build successful — nothing to compile for FastAPI."
+      - echo "Preparing artifacts for CodeDeploy..."
+
+artifacts:
+  files:
+    - '**/*'
