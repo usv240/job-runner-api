@@ -7,16 +7,16 @@ files:
 
 hooks:
   BeforeInstall:
-    - location: scripts\stop_server.ps1
+    - location: deploy\stop_server.ps1
       timeout: 300
       runas: Administrator
 
   AfterInstall:
-    - location: scripts\install_dependencies.ps1
+    - location: deploy\install_dependencies.ps1
       timeout: 300
       runas: Administrator
 
   ApplicationStart:
-    - location: scripts\start_server.ps1
+    - location: deploy\start_server.ps1
       timeout: 300
       runas: Administrator
