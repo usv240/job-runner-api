@@ -3,15 +3,15 @@ version: 0.2
 phases:
   install:
     commands:
-      - echo "Checking Python installation..."
-      - python --version || echo "Python not found!"
-      - echo "Upgrading pip and installing requirements..."
+      - echo Checking Python installation...
+      - python --version || echo Python not found!
+      - echo Upgrading pip and installing requirements...
       - pip install --upgrade pip
-      - pip install -r requirements.txt || echo "requirements.txt not found, skipping"
+      - pip install -r requirements.txt || echo requirements.txt not found, skipping
 
   build:
     commands:
-      - echo "Build successful — preparing artifacts for CodeDeploy."
+      - echo Build successful - preparing artifacts for CodeDeploy.
 
 artifacts:
   files:
